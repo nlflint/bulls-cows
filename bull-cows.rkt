@@ -24,9 +24,6 @@
 
 ;----------------------
 
-(define (all-eq? things)
-  (apply eq? things))
-
 (define (contains? list item)
   (ormap (partial eq? item) list))
 
