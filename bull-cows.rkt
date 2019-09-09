@@ -8,12 +8,12 @@
       `(()())
       (apply map list lists)))
 
-(define (all-not-equal? things)
-  (not (apply eq? things)))
+(define (is-bull? things)
+  (apply eq? things))
                                
 (define (filter-out-bulls answer-digits guess-digits)
   (let* ([transposed (transpose answer-digits guess-digits)]
-         [filtered (filter all-not-equal? transposed)])
+         [filtered (filter (compose not is-bull?) transposed)])
   (apply transpose filtered)))
 
 (check-equal?
@@ -74,7 +74,7 @@
           item-at-index
           (shuffle (remq item-at-index list))))))
 
-(define create-random-game
+(define (create-random-game)
   (create-game (take (shuffle (range 0 10)) 4))) 
 
 ;example game creation
